@@ -10,5 +10,13 @@
     "description": "",
     "dependencies": {
         "@types/node": "^22.10.1"
+    },
+    "devDependencies": {
+        "prettier": "^3.4.2"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true
     }
 }
