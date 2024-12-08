@@ -8,10 +8,8 @@
     "author": "",
     "license": "ISC",
     "description": "",
-    "dependencies": {
-        "@types/node": "^22.10.1"
-    },
     "devDependencies": {
+        "@types/node": "^22.10.1",
         "prettier": "^3.4.2"
     },
     "prettier": {
