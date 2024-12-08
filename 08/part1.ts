@@ -1,7 +1,9 @@
 import { readFileSync } from 'fs'
 const input = readFileSync('input.txt', 'utf-8').trim()
 
-const antGroups = {}
+type Node = [number, number]
+
+const antGroups: Record<string, Node[]> = {}
 input.split('\n').forEach((line, i) => {
     line.split('').forEach((char, j) => {
         if (char === '.') {
@@ -17,18 +19,18 @@ input.split('\n').forEach((line, i) => {
 const height = input.split('\n').length
 const width = input.split('\n')[0].split('').length
 
-const calcNodes = (a, b) => {
+const calcNodes = (a: Node, b: Node): Node[] => {
     const d0 = a[0] - b[0]
     const d1 = a[1] - b[1]
 
-    const node1 = [a[0] + d0, a[1] + d1]
-    const node2 = [b[0] + d0 * -1, b[1] + d1 * -1]
+    const node1: Node = [a[0] + d0, a[1] + d1]
+    const node2: Node = [b[0] + d0 * -1, b[1] + d1 * -1]
 
     return [node1, node2]
 }
 
 const uniqueNodes = new Map()
-const storeNode = (node) => {
+const storeNode = (node: Node) => {
     if (node[0] < 0 || node[0] >= height || node[1] < 0 || node[1] >= width) {
         return
     }

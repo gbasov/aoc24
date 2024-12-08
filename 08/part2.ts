@@ -1,7 +1,9 @@
 import { readFileSync } from 'fs'
 const input = readFileSync('input.txt', 'utf-8').trim()
 
-const antGroups = {}
+type Node = [number, number]
+
+const antGroups: Record<string, Node[]> = {}
 input.split('\n').forEach((line, i) => {
     line.split('').forEach((char, j) => {
         if (char === '.') {
@@ -17,11 +19,11 @@ input.split('\n').forEach((line, i) => {
 const height = input.split('\n').length
 const width = input.split('\n')[0].split('').length
 
-const outBoard = (node) => {
+const outBoard = (node: Node) => {
     return node[0] < 0 || node[0] >= height || node[1] < 0 || node[1] >= width
 }
 
-const calcNodes = (a, b) => {
+const calcNodes = (a: Node, b: Node): Node[] => {
     const d0 = a[0] - b[0]
     const d1 = a[1] - b[1]
 
@@ -29,7 +31,7 @@ const calcNodes = (a, b) => {
 
     let offset = 1
     while (true) {
-        let node = [a[0] + d0 * offset, a[1] + d1 * offset]
+        let node: Node = [a[0] + d0 * offset, a[1] + d1 * offset]
         if (outBoard(node)) {
             break
         }
@@ -39,7 +41,7 @@ const calcNodes = (a, b) => {
 
     offset = 1
     while (true) {
-        let node = [b[0] + d0 * offset * -1, b[1] + d1 * offset * -1]
+        let node: Node = [b[0] + d0 * offset * -1, b[1] + d1 * offset * -1]
         if (outBoard(node)) {
             break
         }
@@ -51,7 +53,7 @@ const calcNodes = (a, b) => {
 }
 
 const uniqueNodes = new Map()
-const storeNode = (node) => {
+const storeNode = (node: Node) => {
     const id = node[0] * 1000 + node[1]
     uniqueNodes.set(id, true)
 }
