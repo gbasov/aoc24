@@ -24,7 +24,7 @@ const calcNodes = (a: Node, b: Node): Node[] => {
     const d1 = a[1] - b[1]
 
     const node1: Node = [a[0] + d0, a[1] + d1]
-    const node2: Node = [b[0] + d0 * -1, b[1] + d1 * -1]
+    const node2: Node = [b[0] - d0, b[1] - d1]
 
     return [node1, node2]
 }

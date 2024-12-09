@@ -41,7 +41,7 @@ const calcNodes = (a: Node, b: Node): Node[] => {
 
     offset = 1
     while (true) {
-        let node: Node = [b[0] + d0 * offset * -1, b[1] + d1 * offset * -1]
+        let node: Node = [b[0] - d0 * offset, b[1] - d1 * offset]
         if (outBoard(node)) {
             break
         }
