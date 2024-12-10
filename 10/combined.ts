@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs'
 console.time('Time')
 
-const map = readFileSync('input.txt', 'utf-8')
+const map = readFileSync('test.txt', 'utf-8')
     .trim()
     .split('\n')
     .map((line) => line.split('').map(Number))
@@ -22,7 +22,6 @@ let totalScore = 0
 let trails = 0
 let totalRating = 0
 
-let c = 0
 const explore = (i: number, j: number) => {
     const h = map[i][j]
 
