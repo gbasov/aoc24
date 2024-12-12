@@ -29,16 +29,14 @@ for (let i = 0; i < farm.length; i++) {
 
         let area = 0
         let perimeter = 0
-        let perimeterBySide: Record<number, [number, number][]> = steps.reduce(
-            (acc, _, i) => ({ ...acc, [i]: [] }),
-            {},
-        )
+        const perimeterBySide: Record<number, [number, number][]> =
+            steps.reduce((acc, _, i) => ({ ...acc, [i]: [] }), {})
 
         const q: [number, number][] = []
         q.push([i, j])
 
         while (q.length) {
-            const [k, l] = q.shift()
+            const [k, l] = q.shift()!
             if (farm[k][l][1]) {
                 continue
             }
@@ -94,10 +92,10 @@ for (let i = 0; i < farm.length; i++) {
                 group.sort((a, b) => a - b)
 
                 let sections = 1
-                let prev = group.shift()
+                let prev = group.shift()!
 
                 while (group.length) {
-                    let next = group.shift()
+                    const next = group.shift()!
                     if (next - prev > 1) {
                         sections++
                     }

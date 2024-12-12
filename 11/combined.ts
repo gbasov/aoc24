@@ -53,7 +53,7 @@ for (let i = 0; i < blinks[1]; i++) {
     const newStones = new Map<number, number>()
 
     for (const key of keys) {
-        const oldStoneNum = stones.get(key)
+        const oldStoneNum = stones.get(key)!
 
         const splitStones = split(key)
         for (const newStone of splitStones) {

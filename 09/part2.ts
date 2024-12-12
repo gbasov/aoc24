@@ -10,7 +10,7 @@ type Span = {
     prev?: Span
 }
 
-let first: Span = {
+const first: Span = {
     id: 1,
     len: input[0],
 }
@@ -30,16 +30,16 @@ for (let i = 1; i < input.length; i++) {
     isFile = !isFile
 }
 
-const printLine = () => {
-    cur = first
-    let str = ''
-    while (cur) {
-        const char = cur.id ? `${cur.id - 1}` : '.'
-        str += char.repeat(cur.len)
-        cur = cur.next
-    }
-    console.log(str)
-}
+// const printLine = () => {
+//     cur = first
+//     let str = ''
+//     while (cur) {
+//         const char = cur.id ? `${cur.id - 1}` : '.'
+//         str += char.repeat(cur.len)
+//         cur = cur.next
+//     }
+//     console.log(str)
+// }
 
 let curF = last.id ? last : last.prev
 let lastId = curF.id
@@ -62,7 +62,7 @@ while (curF && curF !== first) {
         curS = curS.next
     }
 
-    let curFPrev = curF.prev
+    const curFPrev = curF.prev
 
     if (found) {
         curS.prev.next = curF
