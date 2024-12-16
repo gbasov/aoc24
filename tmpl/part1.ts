@@ -1,6 +1,7 @@
-import { readFileSync } from 'fs'
 console.time('Time')
+import { readFileSync } from 'fs'
 
-const input = readFileSync('test.txt', 'utf-8').trim()
+const IS_TEST = true
+const input = readFileSync(`${IS_TEST ? 'test' : 'input'}.txt`, 'utf-8').trim()
 
 console.timeEnd('Time')
