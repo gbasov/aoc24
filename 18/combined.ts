@@ -1,7 +1,8 @@
 console.time('Time')
 import { readFileSync } from 'fs'
-// const IS_TEST = true
-const IS_TEST = false
+import { PQ } from '../common'
+const IS_TEST = true
+// const IS_TEST = false
 
 const input = readFileSync(`${IS_TEST ? 'test' : 'input'}.txt`, 'utf-8')
     .trim()
@@ -33,21 +34,12 @@ for (let t = 0; t < T; t++) {
 }
 
 const findPath = () => {
-    const q: [number, number, number, number[]][] = [[0, 0, 0, [0]]]
+    const q = new PQ<[number, number, number[]]>([[[0, 0, [0]], 0]])
     const visited = new Set<number>()
 
-    while (q.length) {
-        let point = q[0]
-        let minIndex = 0
-        for (let i = 1; i < q.length; i++) {
-            if (q[i][2] < point[2]) {
-                minIndex = i
-                point = q[i]
-            }
-        }
-        q.splice(minIndex, 1)
+    while (q.size()) {
+        const [[i, j, path], dist] = q.pop()
 
-        const [i, j, dist, path] = point
         const id = pointId(i, j)
         if (visited.has(id)) {
             continue
@@ -55,10 +47,7 @@ const findPath = () => {
         visited.add(id)
 
         if (i === end[0] && j === end[1]) {
-            return {
-                points: new Set<number>(path),
-                dist,
-            }
+            return { dist, points: new Set<number>(path) }
         }
         for (const d of dirs) {
             const ni = i + d[0],
@@ -67,7 +56,7 @@ const findPath = () => {
                 continue
             }
 
-            q.push([ni, nj, dist + 1, [...path, pointId(ni, nj)]])
+            q.push([ni, nj, [...path, pointId(ni, nj)]], dist + 1)
         }
     }
 
