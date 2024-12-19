@@ -1,9 +1,9 @@
 console.time('Time')
 import { readFileSync } from 'fs'
 
-const TEST = true
-// const TEST = false
+// const INPUT = 'input.txt'
+const INPUT = 'test.txt'
 
-const input = readFileSync(`${TEST ? 'test' : 'input'}.txt`, 'utf-8').trim()
+const input = readFileSync(INPUT, 'ascii').trim()
 
 console.timeEnd('Time')
