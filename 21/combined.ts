@@ -11,7 +11,7 @@ type PadName = 'num' | 'dir'
 const TEST = false
 
 const INPUT = TEST ? 'test.txt' : 'input.txt'
-const codes = readFileSync(`${INPUT}`, 'ascii')
+const codes = readFileSync(INPUT, 'ascii')
     .trim()
     .split('\n')
     .map((c) => c.split(''))
