@@ -24,13 +24,24 @@ for (const pair of pairs) {
 
 let maxSize = 0
 let maxGroup: string[] = []
+const explored = new Set<string>()
 
 for (const n in nodes) {
-    const links = [...nodes[n]]
+    explored.add(n)
+    const links = [...nodes[n]].filter((ni) => !explored.has(ni))
+
+    if (links.length + 1 <= maxSize) {
+        continue
+    }
+
     const nLinks = links.map((ni) => nodes[ni])
 
     for (let i = 0; i < links.length; i++) {
         const n1 = links[i]
+        if (explored.has(n1)) {
+            continue
+        }
+
         let group = links.toSpliced(i, 1).filter((_, i) => nLinks[i].has(n1))
 
         group = [
